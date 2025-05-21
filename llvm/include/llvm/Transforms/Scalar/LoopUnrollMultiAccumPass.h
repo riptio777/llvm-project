@@ -10,7 +10,23 @@ class Loop;
 class LoopStandardAnalysisResults;
 class LPMUpdater;
 
-struct LoopUnrollMultiAccum : public PassInfoMixin<LoopUnrollMultiAccum> {
+struct LoopUnrollMultiAccumOptions {
+// placeholder for LoopUnrollMAOptions
+  int NumAccum;
+  //int OptLevel;
+
+LoopUnrollMultiAccumOptions(int NumAccum = 4)
+    NumAccum(NumAccum) {}
+};
+
+class LoopUnrollMultiAccum : public PassInfoMixin<LoopUnrollMultiAccum> {
+  LoopUnrollMultiAccumOptions UnrollMultiAccumOpts;
+
+public:
+
+  explicit LoopUnrollMultiAccum(LoopUnrollMultiAccumOptions UnrollMultiAccumOpts = {})
+      : UnrollMultiAccumOpts(UnrollMultiAccumOpts) {}
+
   PreservedAnalyses run(Loop &L, LoopAnalysisManager &AM,
                         LoopStandardAnalysisResults &AR, LPMUpdater &U);
 };

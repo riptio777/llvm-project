@@ -557,6 +557,11 @@ FUNCTION_PASS_WITH_PARAMS(
     "no-profile-peeling;profile-peeling;no-runtime;runtime;no-upperbound;"
     "upperbound")
 FUNCTION_PASS_WITH_PARAMS(
+    "loop-unroll-multi-accum", "LoopUnrollMultiAccumPass",
+    [](LoopUnrollMultiAccumOptions Opts) { return LoopUnrollMultiAccumPass(Opts); },
+    parseLoopUnrollMultiAccumOptions, "num-accum=N")    
+
+FUNCTION_PASS_WITH_PARAMS(
     "loop-vectorize", "LoopVectorizePass",
     [](LoopVectorizeOptions Opts) { return LoopVectorizePass(Opts); },
     parseLoopVectorizeOptions,
