@@ -1,5 +1,5 @@
 // LoopUnrollMultiAccum.cpp
-#include "llvm/Transforms/Scalar/LoopUnrollMultiAccum.h"
+#include "llvm/Transforms/Scalar/LoopUnrollMultiAccumPass.h"
 #include "llvm/ADT/Statistic.h"
 #include "llvm/Analysis/LoopAnalysisManager.h"
 #include "llvm/Analysis/ScalarEvolution.h"
