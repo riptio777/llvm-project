@@ -3,11 +3,13 @@
 #define LLVM_TRANSFORMS_SCALAR_LOOPUNROLLMULTIACCUM_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Analysis/LoopAnalysisManager.h"
+//#include "llvm/Support/CommandLine.h"
 
 namespace llvm {
 
 class Loop;
-class LoopStandardAnalysisResults;
+struct LoopStandardAnalysisResults;
 class LPMUpdater;
 
 struct LoopUnrollMultiAccumOptions {
@@ -15,20 +17,21 @@ struct LoopUnrollMultiAccumOptions {
   int NumAccum;
   //int OptLevel;
 
-LoopUnrollMultiAccumOptions(int NumAccum = 4)
-    NumAccum(NumAccum) {}
+LoopUnrollMultiAccumOptions(int NumAccum = 4):NumAccum(NumAccum) {}
+
 };
 
-class LoopUnrollMultiAccum : public PassInfoMixin<LoopUnrollMultiAccum> {
+class LoopUnrollMultiAccumPass : public PassInfoMixin<LoopUnrollMultiAccumPass> {
   LoopUnrollMultiAccumOptions UnrollMultiAccumOpts;
 
 public:
 
-  explicit LoopUnrollMultiAccum(LoopUnrollMultiAccumOptions UnrollMultiAccumOpts = {})
+  explicit LoopUnrollMultiAccumPass(LoopUnrollMultiAccumOptions UnrollMultiAccumOpts = {})
       : UnrollMultiAccumOpts(UnrollMultiAccumOpts) {}
 
   PreservedAnalyses run(Loop &L, LoopAnalysisManager &AM,
                         LoopStandardAnalysisResults &AR, LPMUpdater &U);
+
 };
 
 } // namespace llvm

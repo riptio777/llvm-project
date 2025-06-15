@@ -742,6 +742,11 @@ Expected<LoopUnrollOptions> parseLoopUnrollOptions(StringRef Params) {
   return UnrollOpts;
 }
 
+Expected<bool> parseLoopUnrollMultiAccumOptions(StringRef Params) {
+  return PassBuilder::parseSinglePassOption(Params, "no-peeled-multi-accum",
+                                            "LoopUnrollMultiAccum");
+}
+
 Expected<bool> parseGlobalDCEPassOptions(StringRef Params) {
   return PassBuilder::parseSinglePassOption(
       Params, "vfe-linkage-unit-visibility", "GlobalDCE");

@@ -556,11 +556,12 @@ FUNCTION_PASS_WITH_PARAMS(
     "O0;O1;O2;O3;full-unroll-max=N;no-partial;partial;no-peeling;peeling;"
     "no-profile-peeling;profile-peeling;no-runtime;runtime;no-upperbound;"
     "upperbound")
+/*
 FUNCTION_PASS_WITH_PARAMS(
     "loop-unroll-multi-accum", "LoopUnrollMultiAccumPass",
     [](LoopUnrollMultiAccumOptions Opts) { return LoopUnrollMultiAccumPass(Opts); },
     parseLoopUnrollMultiAccumOptions, "num-accum=N")    
-
+*/
 FUNCTION_PASS_WITH_PARAMS(
     "loop-vectorize", "LoopVectorizePass",
     [](LoopVectorizeOptions Opts) { return LoopVectorizePass(Opts); },
@@ -720,6 +721,10 @@ LOOP_PASS_WITH_PARAMS(
     parseLoopRotateOptions,
     "no-header-duplication;header-duplication;"
     "no-prepare-for-lto;prepare-for-lto")
+LOOP_PASS_WITH_PARAMS(
+    "loop-unroll-multi-accum", "LoopUnrollMultiAccumPass",
+    [](LoopUnrollMultiAccumOptions Opts) { return LoopUnrollMultiAccumPass(Opts); },
+    parseLoopUnrollMultiAccumOptions, "num-accum=N")   
 LOOP_PASS_WITH_PARAMS(
     "simple-loop-unswitch", "SimpleLoopUnswitchPass",
     [](std::pair<bool, bool> Params) {
