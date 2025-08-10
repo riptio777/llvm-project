@@ -31,6 +31,8 @@ public:
   void printPipeline(raw_ostream &OS,
                      function_ref<StringRef(StringRef)> MapClassName2PassName);
 
+  static bool isRequired() { return true; }
+
 private:
   const bool EnableHeaderDuplication;
   const bool PrepareForLTO;
